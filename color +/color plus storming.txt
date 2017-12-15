@@ -1,0 +1,87 @@
+int gridX, gridY;
+Vector3 cubePosition;
+GameObject cubePrefab;
+
+firstTurn = 2;
+turnLength = 2;
+
+
+start(){
+gridX = 8;
+gridY = 5;
+
+for (int y = 0; y > gridY; y++){
+   for (int x = 0; x> gridX; x++){
+       //instantiate 8x5 grid of white cubes
+       cubePosition = new Vector 3 (x, y, 0);
+       grid [x,y] = Instantiate (cubePrefab, cubePosition, Quaternion.identity);
+       grid [x,y].GetComponent<Renderer>().material.color = Color.white;
+   }
+}
+
+
+start with a nextCube. maybe a different variable?
+nextCubeHolder????
+}
+
+update (){
+if (Time.time < 60){
+   if (Time.time > firstTurn){
+   instantiate a nextCube
+   if nextCube is colored, turn white cube in grid black
+   if nextCube is empty (grey?), fill with random color (color array? to make random.range easier)
+   place nextCube in random.range in grid
+
+   onkeyboardinput() functions during the turn length?
+   needs a method
+
+ProcessKeyboard ()
+
+
+   firstTurn += turnLength;
+   }
+}
+
+   }
+
+}
+
+
+
+UPDATE
+//if statement that keeps track of the time
+	checks to see if nextCube spot is empty (bool?)
+	if spot is empty
+		adds new cube to next cube at the start of every turn
+	if spot is full
+		creates black cube in any row
+	detects keyboard input (in update but outside of timer)
+		creates a colored cube the same color as the current "next cube"
+		places cube into the selected row (1-5)
+	
+METHODS
+ProcessKeyboard()
+	on 1, 2, 3, 4 or 5, places nextCube into a random empty spot in corresponding row
+	availableSpot bool? checks to see if space is white
+	empties the nextCube spot until next turn
+ProcessClick()
+	click on color, activate
+		if click is on adjacent white spot, move color to that spot, turn old spot white
+	click on active color, deactivate
+	click on white/black, nothing happens
+	click on far spot, nothing happens
+ScoreCounter()
+	checks for keyboard input in turn time
+		if none, deducts 1 point
+	looks for pluses
+		turns them black
+		adds appropriate scoring (5 or 10)
+	updates score
+	if score = 0 and points are trying to be subtracted, do nothing
+EndGame()
+	checks for end-game conditions
+		keyboard input. is selected row full? endgame. loss
+		no keyboard input? all spaces full? endgame. loss
+		time runs out. endgame
+			is score positive? win
+			negative? loss
